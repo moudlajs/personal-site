@@ -16,6 +16,11 @@ steps:
   displayName: Execute PowerShell script
   inputs:
     targetType: 'inline'
+    script: az login
+- task: PowerShell@2
+  displayName: Execute PowerShell script
+  inputs:
+    targetType: 'inline'
     script: $outputVar = az account show --query id --output tsv
 - task: PowerShell@2
   displayName: Execute PowerShell script
