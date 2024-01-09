@@ -9,12 +9,14 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  outputVar: 
 steps:
 - task: PowerShell@2
   displayName: Execute PowerShell script
   inputs:
     script:
-      $outputVar = az account show --query id --output tsv
+      powershell $outputVar = az account show --query id --output tsv
       Write-Host $outputVar
 
 - script: |
