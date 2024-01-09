@@ -10,8 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: PowerShell@2
+  displayName: Execute PowerShell script
+  inputs:
+    script:
+      $outputVar = az account show --query id --output tsv
+      Write-Host $outputVar
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
