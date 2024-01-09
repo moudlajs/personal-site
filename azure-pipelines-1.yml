@@ -12,13 +12,15 @@ pool:
 variables:
   outputVar: 
 steps:
-- steps
+- task: PowerShell@2
+  displayName: Execute PowerShell script
   inputs:
-    script:
-      powershell $outputVar = az account show --query id --output tsv
-      Write-Host $outputVar
+    targetType: 'inline'
+    script: $outputVar = <PowerShell script command>
+- task: PowerShell@2
+  displayName: Execute PowerShell script
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host $outputVariable
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
