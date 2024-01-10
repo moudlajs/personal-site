@@ -7,4 +7,26 @@ trigger:
 - main
 
 pool:
- name: MyDefaultPool
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Azure CLI '
+  inputs:
+    azureSubscription: 'My Azure Resource Manager'
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+     $subId = az account show --query id --output tsv
+     Write-Host "This is my subscriptiojn id: " $subId
+     Write-Host "This is my SP": $servicePrincipalId
+     Write-Host "This is my SPKey: " $servicePrincipalKey
+     Write-Host "This is my tenantID: " $tenantId
+    addSpnToEnvironment: true
+  continueOnError: true
+
+# - task: PowerShell@2
+#   name: 'UseVal2' 
+#   inputs:
+#     targetType: 'inline'
+#     script: 'Write-Host The value of setvalue is $(SetVal2.setvalue)'
