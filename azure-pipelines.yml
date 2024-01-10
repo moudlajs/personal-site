@@ -19,9 +19,9 @@ steps:
     inlineScript: |
      $subId = az account show --query id --output tsv
      Write-Host "This is my subscriptiojn id: " $subId
-     Write-Host "This is my SP": $servicePrincipalId
-     Write-Host "This is my SPKey: " $servicePrincipalKey
-     Write-Host "This is my tenantID: " $tenantId
+     Write-Host "This is my SP": $env:servicePrincipalId
+     Write-Host "This is my SPKey: " $env:servicePrincipalKey
+     Write-Host "This is my tenantID: " $env:tenantId
     addSpnToEnvironment: true
   continueOnError: true
 
